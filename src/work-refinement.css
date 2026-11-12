@@ -1,8 +1,7 @@
 /* Work section typography and cards. The shared shell sets the content width. */
 .work .section-top{margin-bottom:42px;gap:40px;align-items:flex-end}
 .work .section-top .micro{font-size:10px;letter-spacing:1.8px;margin-bottom:24px}
-.work .work-heading{font-family:'Microsoft YaHei','PingFang SC',sans-serif;font-size:clamp(38px,4.5vw,66px);font-weight:600;line-height:1.28;letter-spacing:-.045em}
-.work .work-heading em{color:#92959e}
+.work .display em{color:#92959e}
 .work .work-context{padding-bottom:5px;flex-shrink:0}
 .work .work-context>.micro{display:block;color:#777b85;font-size:9px;letter-spacing:1.6px;margin-bottom:13px}
 .work .work-context>.micro::before{display:none}
@@ -23,7 +22,7 @@
 .nav-contact:hover,.contact .pill:hover{background:var(--brand-gradient);border-color:var(--brand-edge);color:#fff}
 .work .project-image:focus-visible .project-view::before{transform:translateY(-50%) scale(42)}
 @media(max-width:700px){.work .project-view,.work .project:hover .project-view{width:102px;height:34px}}
-@media(max-width:700px){.work .section-top{display:block;margin-bottom:28px}.work .section-top .micro{margin-bottom:18px;font-size:9px}.work .work-heading{font-size:38px;line-height:1.3}.work .work-context{margin-top:20px}.work .work-context>.micro{display:none}.work .work-context p{font-size:11px;line-height:1.8}.work .filter{gap:7px;padding-bottom:20px;margin-bottom:24px}.work .filter button{padding:7px 11px;min-height:38px;font-size:11px;gap:7px}.work .filter button span{min-width:20px;height:20px;font-size:9px}.work .project-list{row-gap:30px}.work .project-description{padding-top:14px}.work .project-description h3{font-size:17px}}
+@media(max-width:700px){.work .section-top{display:block;margin-bottom:28px}.work .section-top .micro{margin-bottom:18px;font-size:9px}.work .work-context{margin-top:20px}.work .work-context>.micro{display:none}.work .work-context p{font-size:11px;line-height:1.8}.work .filter{gap:7px;padding-bottom:20px;margin-bottom:24px}.work .filter button{padding:7px 11px;min-height:38px;font-size:11px;gap:7px}.work .filter button span{min-width:20px;height:20px;font-size:9px}.work .project-list{row-gap:30px}.work .project-description{padding-top:14px}.work .project-description h3{font-size:17px}}
 
 .work .project-card {
   display: flex;
