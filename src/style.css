@@ -5,8 +5,7 @@
 @media(max-width:700px){.lightbox-scroll img{min-width:900px;max-width:none;width:900px}.lightbox-scroll{overflow:auto}}
 
 /* Compact project gallery, sized to the supplied two-row reference. */
-.work .project-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 12px;max-width:1284px;margin:0 auto 70px}
-.work .filter{max-width:1284px;margin-inline:auto}
+.work .project-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:28px 12px;margin:0 0 70px}
 .work .project{margin:0;min-width:0}
 .work .project-image{display:flex;align-items:center;justify-content:center;aspect-ratio:14/9;border-radius:16px;background:#101014;isolation:isolate}
 .work .project-image::before{content:'';position:absolute;inset:-40px;background-image:var(--cover-image);background-size:cover;background-position:center;filter:blur(32px) brightness(.32) saturate(.8);transform:scale(1.08);pointer-events:none;z-index:-1}
@@ -24,8 +23,8 @@
 .work .project-description>p{display:none}
 .work .round-link{width:32px;height:32px;flex:none}
 .work .round-link svg{width:17px;height:17px}
-@media(min-width:701px) and (max-width:1099px){.work .project-list{grid-template-columns:repeat(2,minmax(0,1fr));max-width:852px}}
-@media(max-width:700px){.work .project-list{grid-template-columns:minmax(0,1fr);max-width:420px;gap:26px;margin-bottom:45px}.work .project-description h3{font-size:18px}}
+@media(min-width:701px) and (max-width:1099px){.work .project-list{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){.work .project-list{grid-template-columns:minmax(0,1fr);gap:26px;margin-bottom:45px}.work .project-description h3{font-size:18px}}
 /* Match the 48px baked-in artwork corners at their original 1920px width.
    A small inset also clips the white anti-aliased export fringe. */
 .case-page{container-type:inline-size}
