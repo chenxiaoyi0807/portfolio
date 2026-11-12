@@ -52,7 +52,7 @@ export function useGalleryMotion(reducedMotion: boolean | null) {
         card.style.setProperty('--pointer-x', `${pointer.clientX - rect.left}px`);
         card.style.setProperty('--pointer-y', `${pointer.clientY - rect.top}px`);
       }
-      const magnet = target.closest<HTMLElement>('.gradient-pill,.nav-contact,.contact .pill');
+      const magnet = target.closest<HTMLElement>('.gradient-pill:not(.hero-cta),.nav-contact,.contact .pill');
       if (magnet !== lastMagnet) resetMagnet();
       if (magnet) {
         const rect = magnet.getBoundingClientRect();

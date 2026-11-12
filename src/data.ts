@@ -1,6 +1,5 @@
 import { sitePath } from './site-path';
 
-export const figmaUrl='https://www.figma.com/design/w0mHcxYlRKveU6HnJxsf5r/作品集?node-id=0-1';
 export type Project={slug:string;name:string;en:string;category:string;tags:string[];intro:string;pages:number[];chapters:{page:number;title:string}[];color:string};
 const range=(a:number,b:number)=>Array.from({length:b-a+1},(_,i)=>a+i);
 export const projects:Project[]=[
