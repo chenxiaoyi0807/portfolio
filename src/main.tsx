@@ -16,6 +16,7 @@ import'./style.css';
 import'./gallery.css';
 import'./monochrome.css';
 import'./work-refinement.css';
+import'./hero-showcase.css';
 import{sitePath,currentRoute}from'./site-path';
 import{useGalleryMotion}from'./use-gallery-motion';
 import{copyText}from'./copy-text';
@@ -34,7 +35,38 @@ return <><div className="contact-toast-region" role="status" aria-live="polite" 
 <section className="detail-head shell"><a className="back" href={sitePath('#work')} onClick={e=>{e.preventDefault();go(sitePath('#work'))}}><ArrowLeft size={17}/> 返回所有作品</a><div className="eyebrow"><span>CASE STUDY / {String(projects.indexOf(project)+1).padStart(2,'0')}</span><span>{project.category}</span></div><h1>{project.name}</h1><p className="detail-en">{project.en}</p><div className="detail-info"><div className="tags">{project.tags.map(t=><span key={t}>{t}</span>)}</div><p>{project.intro}</p></div></section>
 <div className="case-layout shell"><aside className="case-nav"><span className="micro">IN THIS PROJECT</span>{project.chapters.map((c,i)=><a href={`#page-${c.page}`} key={c.page}><small>{String(i+1).padStart(2,'0')}</small>{c.title}</a>)}</aside><div className="case-pages">{project.pages.map((n,i)=><figure id={`page-${n}`} className="case-page" key={n}><div className="page-caption"><span>{project.chapters.find(c=>c.page===n)?.title||'设计展示'}</span><span>{String(i+1).padStart(2,'0')} / {project.pages.length}</span></div><button onClick={()=>setZoom(n)} className="artwork-button" aria-label={`放大${project.name}第 ${i+1} 页`}><img src={imageFor(n)} alt={`${project.name} — 作品集原稿第 ${n} 页`} loading={i===0?'eager':'lazy'}/><span className="expand"><Expand size={17}/> 放大查看</span></button></figure>)}</div></div>
 <section className="next-project shell"><div><span className="micro">CONTINUE EXPLORING</span><a href={link(projects[(projects.indexOf(project)+5)%6])} onClick={e=>{e.preventDefault();go(link(projects[(projects.indexOf(project)+5)%6]))}} className="back"><ArrowLeft size={16}/> 上一个作品</a></div><a href={link(projects[(projects.indexOf(project)+1)%6])} onClick={e=>{e.preventDefault();go(link(projects[(projects.indexOf(project)+1)%6]))}}><span className="micro">下一个作品</span><h2>{projects[(projects.indexOf(project)+1)%6].name} <ArrowUpRight/></h2></a></section></>:<>
-<section className="hero shell"><DotField/><motion.div {...reveal} className="hero-meta"><span><i className="status-dot"/> 产品体验 / 视觉探索 / AI 实践</span><span>SELECTED WORK · 2023—2026</span></motion.div><motion.h1 {...reveal} transition={{duration:1}} className="hero-heading">HI,I‘M CHEN XIAO HEI</motion.h1><div className="hero-stage"><div className="orbit" aria-hidden="true"><div className="orbit-ring"/><span className="orbit-star">✳</span></div><motion.div className="hero-note" {...reveal}><span className="micro">DESIGN WITH PURPOSE.</span><p>让复杂的业务，<br/>拥有清晰的体验。</p><span className="muted">探索产品、视觉与 AI 的更多可能。</span></motion.div><div className="hero-art">{[projects[2],projects[0],projects[3]].map((p,i)=><motion.a initial={{opacity:0,y:70}} animate={{opacity:1,y:0}} transition={{duration:.9,delay:.3+i*.12}} href={link(p)} onClick={e=>{e.preventDefault();go(link(p))}} key={p.slug} className={`floating-art art-${i}`} aria-label={`查看${p.name}`}><img src={imageFor(p.pages[0])} alt={p.name}/><span>{p.name} <ArrowUpRight size={14}/></span></motion.a>)}</div><a className="hero-cta gradient-pill" href="#work">探索我的作品 <span className="cta-arrow" aria-hidden="true"><ArrowDown size={18}/></span></a><div className="hero-bottom"><span>UI / UX DESIGNER<br/><span className="muted">从问题出发，以体验作答。</span></span></div></div></section>
+<section className="hero shell hero-showcase">
+  <div className="hero-scene" aria-hidden="true"><DotField /></div>
+  <div className="hero-meta">
+    <span><i className="status-dot" /> 产品体验 / 视觉探索 / AI 实践</span>
+    <span>SELECTED WORK · 2023—2026</span>
+  </div>
+  <h1 className="hero-title"><span>HI,I‘M </span>CHEN XIAO HEI</h1>
+  <div className="hero-deck" aria-label="精选作品预览">
+    {[projects[2], projects[0], projects[3]].map((p, i) => (
+      <a
+        className={`hero-project hero-project-${i}`}
+        href={link(p)}
+        onClick={e => { e.preventDefault(); go(link(p)); }}
+        key={p.slug}
+      >
+        <img src={imageFor(p.pages[0])} alt="" fetchPriority={i === 1 ? 'high' : 'auto'} />
+        <span className="hero-project-label">
+          <span>{p.name}</span><ArrowUpRight size={16} aria-hidden="true" />
+        </span>
+      </a>
+    ))}
+  </div>
+  <div className="hero-showcase-footer">
+    <div className="hero-intro">
+      <span className="micro">UI / UX DESIGNER</span>
+      <p>让复杂的业务，拥有清晰的体验。</p>
+    </div>
+    <a className="hero-cta gradient-pill" href="#work">
+      探索我的作品 <span className="cta-arrow" aria-hidden="true"><ArrowDown size={18} /></span>
+    </a>
+  </div>
+</section>
 <div className="ticker" aria-hidden="true"><div>{Array.from({length:4},(_,i)=><span key={i}>PRODUCT EXPERIENCE <b>✳</b> VISUAL DESIGN <b>✳</b> AI EXPLORATION <b>✳</b> </span>)}</div></div>
 <section id="work" className="work shell"><motion.div {...reveal} className="section-top"><div><span className="micro">01 / SELECTED PROJECTS</span><h2 className="display">从复杂业务，<br/><em>到清晰体验。</em></h2></div><div className="work-context"><span className="micro">SELECTED WORK / 06</span><p>真实业务中的设计思考，<br/>以及从想法到落地的探索。</p></div></motion.div><div className="filter" role="group" aria-label="作品分类">{['全部','产品体验','数字可视化','AI Agent'].map(t=><button aria-pressed={filter===t} className={filter===t?'active':''} onClick={()=>setFilter(t)} key={t}>{t}<span>{t==='全部'?'06':String(projects.filter(p=>p.category===t).length).padStart(2,'0')}</span></button>)}</div><div className="project-list">
   {projects.filter(p => filter === '全部' || p.category === filter).map(p => {

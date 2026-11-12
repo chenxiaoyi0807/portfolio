@@ -1,0 +1,228 @@
+:root { --site-nav-height: 92px; }
+
+.nav { height: var(--site-nav-height); }
+
+.hero-showcase {
+  --deck-card-width: clamp(210px, min(37vw, 51svh), 570px);
+  position: relative;
+  isolation: isolate;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  min-height: calc(100svh - var(--site-nav-height));
+  padding-block: clamp(22px, 3.8svh, 50px) clamp(22px, 3.8svh, 48px);
+}
+
+.hero-scene {
+  position: absolute;
+  inset: 0 auto 0 50%;
+  width: 100vw;
+  transform: translateX(-50%);
+  overflow: hidden;
+  z-index: -1;
+  pointer-events: none;
+  background: radial-gradient(ellipse at 50% 72%, #20251a 0%, #141713 30%, #0c0c0c 72%);
+}
+
+.hero-scene .dot-field {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: .48;
+  mask-image: linear-gradient(transparent, #000 30%, #000 76%, transparent);
+}
+
+.hero-showcase .hero-meta {
+  min-height: 22px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #e5e9ef26;
+}
+
+.hero-title {
+  position: relative;
+  z-index: 1;
+  margin-block: clamp(12px, 2.1svh, 30px) 0;
+  font-size: min(10.5cqw, 19svh, 178px);
+  font-weight: 800;
+  line-height: .99;
+  letter-spacing: -.053em;
+  white-space: nowrap;
+  color: #e5edf4;
+  background: linear-gradient(174deg, #f6f8fc 16%, #aab8c6 94%);
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: showcase-title-in .65s var(--gallery-ease) both;
+}
+
+@keyframes showcase-title-in {
+  from { opacity: 0; transform: translateY(16px); }
+}
+
+.hero-deck {
+  display: grid;
+  place-items: center;
+  position: relative;
+  isolation: isolate;
+  flex: 1 0 auto;
+  min-height: calc(var(--deck-card-width) * .72 + 52px);
+  margin-block: 0 10px;
+}
+
+.hero-deck::before {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  width: min(98%, 1320px);
+  height: 56%;
+  top: 34%;
+  border: 1px solid #c1d7ab21;
+  border-radius: 50%;
+  transform: rotate(-7deg);
+  background: radial-gradient(ellipse at center, #b1d27719, transparent 68%);
+}
+
+.hero-project {
+  --deck-x: 0px;
+  --deck-y: 0px;
+  --deck-angle: 0deg;
+  --deck-turn: 0deg;
+  --depth: .55;
+  --lift: 0px;
+  position: relative;
+  grid-area: 1 / 1;
+  width: var(--deck-card-width);
+  overflow: hidden;
+  border: 1px solid #dce6f153;
+  border-radius: 15px;
+  background: #17191a;
+  color: #dce5ed;
+  box-shadow: 0 18px 40px #000a, 0 2px 6px #0008;
+  translate: calc(var(--deck-x) + var(--hero-x, 0px) * var(--depth))
+    calc(var(--deck-y) + var(--hero-y, 0px) * var(--depth) + var(--lift));
+  transform: perspective(1100px) rotateY(var(--deck-turn)) rotate(var(--deck-angle));
+  transition: translate .55s var(--gallery-ease), transform .55s var(--gallery-ease), border-color .3s;
+  animation: showcase-project-in .85s var(--gallery-ease) var(--enter-delay, .13s) both;
+}
+
+@keyframes showcase-project-in {
+  from {
+    opacity: 0;
+    transform: perspective(1100px) translateY(36px) rotateY(var(--deck-turn)) rotate(var(--deck-angle));
+  }
+}
+
+.hero-project-0 {
+  --deck-x: calc(var(--deck-card-width) * -.69);
+  --deck-y: 14px;
+  --deck-angle: -9deg;
+  --deck-turn: 13deg;
+}
+
+.hero-project-1 {
+  --depth: 1;
+  --enter-delay: .04s;
+  z-index: 2;
+  border-color: #d4edb586;
+  box-shadow: 0 24px 56px #000b, 0 0 45px #baff2924;
+}
+
+.hero-project-2 {
+  --deck-x: calc(var(--deck-card-width) * .69);
+  --deck-y: 14px;
+  --deck-angle: 9deg;
+  --deck-turn: -13deg;
+  --enter-delay: .22s;
+}
+
+.hero-project img {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: calc(var(--deck-card-width) * .027);
+  object-fit: cover;
+}
+
+.hero-project-2 img { object-position: 50% 31%; }
+
+.hero-project-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  min-height: 42px;
+  padding: 9px 13px;
+  border-top: 1px solid #ffffff17;
+  font-size: 12px;
+}
+
+.hero-project-label svg { flex: none; }
+
+@media (hover: hover) and (pointer: fine) {
+  .hero-project:hover { --lift: -12px; --deck-angle: 0deg; --deck-turn: 0deg; z-index: 3; border-color: #e9f1fa; }
+}
+
+.hero-project:focus-visible {
+  --lift: -8px;
+  z-index: 3;
+  outline-offset: 3px;
+}
+
+.hero-showcase-footer {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 16px;
+  padding-top: 16px;
+  border-top: 1px solid #e5e9ef26;
+}
+
+.hero-intro .micro { color: #a4adb8; }
+
+.hero-intro p {
+  margin-top: 5px;
+  color: #edf2f6;
+  font-size: clamp(15px, 1.8vw, 24px);
+}
+
+.hero-showcase .hero-cta {
+  position: relative;
+  inset: auto;
+  flex: none;
+}
+
+@media (max-width: 900px) {
+  .hero-showcase { --deck-card-width: clamp(180px, 41vw, 370px); }
+  .hero-project-0 { --deck-x: calc(var(--deck-card-width) * -.59); }
+  .hero-project-2 { --deck-x: calc(var(--deck-card-width) * .59); }
+}
+
+@media (max-width: 700px) {
+  :root { --site-nav-height: 75px; }
+
+  .hero-showcase { --deck-card-width: clamp(155px, min(56vw, 42svh), 345px); }
+  .hero-title { font-size: min(14.2cqw, 76px); white-space: normal; }
+  .hero-title > span { display: block; font-size: .67em; line-height: 1.1; }
+  .hero-project { border-radius: 10px; }
+  .hero-project-0 { --deck-x: calc(var(--deck-card-width) * -.27); --deck-angle: -12deg; --deck-y: 11px; }
+  .hero-project-2 { --deck-x: calc(var(--deck-card-width) * .27); --deck-angle: 12deg; --deck-y: 11px; }
+  .hero-project-label { min-height: 34px; padding: 7px 9px; font-size: 10px; }
+  .hero-project-label svg { width: 13px; height: 13px; }
+  .hero-showcase-footer { align-items: start; flex-direction: column; gap: 13px; }
+  .hero-intro .micro { font-size: 9px; }
+  .hero-showcase .hero-cta { padding: 10px 17px; }
+}
+
+@media (max-height: 620px) and (min-width: 701px) {
+  .hero-showcase {
+    --deck-card-width: clamp(160px, min(32vw, 39svh), 360px);
+    padding-block: 14px;
+  }
+  .hero-title { font-size: min(10.5cqw, 13.4svh, 178px); margin-top: 10px; }
+  .hero-deck { min-height: calc(var(--deck-card-width) * .72 + 38px); margin-bottom: 4px; }
+  .hero-showcase-footer { padding-top: 8px; }
+  .hero-project-label { min-height: 34px; padding-block: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-title, .hero-project { animation: none; transition: none; }
+  .hero-project { --hero-x: 0px; --hero-y: 0px; }
+}
