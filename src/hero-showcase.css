@@ -21,7 +21,7 @@
   overflow: hidden;
   z-index: -1;
   pointer-events: none;
-  background: radial-gradient(ellipse at 50% 72%, #20251a 0%, #141713 30%, #0c0c0c 72%);
+  background: radial-gradient(ellipse at 50% 72%, #112c36 0%, #111b23 36%, #0c0c0c 72%);
 }
 
 .hero-scene .dot-field {
@@ -75,10 +75,10 @@
   width: min(98%, 1320px);
   height: 56%;
   top: 34%;
-  border: 1px solid #c1d7ab21;
+  border: 1px solid #a3dff12e;
   border-radius: 50%;
   transform: rotate(-7deg);
-  background: radial-gradient(ellipse at center, #b1d27719, transparent 68%);
+  background: radial-gradient(ellipse at center, #68d8fa19, transparent 68%);
 }
 
 .hero-project {
@@ -122,8 +122,8 @@
   --depth: 1;
   --enter-delay: .04s;
   z-index: 2;
-  border-color: #d4edb586;
-  box-shadow: 0 24px 56px #000b, 0 0 45px #baff2924;
+  border-color: #9fe9ff85;
+  box-shadow: 0 24px 56px #000b, 0 0 45px #55d9ff32;
 }
 
 .hero-project-2 {

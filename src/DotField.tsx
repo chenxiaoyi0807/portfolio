@@ -67,8 +67,8 @@ export default function DotField() {
       context.setTransform(scale, 0, 0, scale, 0, 0);
       const extent = (width + height) / 4;
       gradient = context.createLinearGradient(width / 2 - extent, height / 2 - extent, width / 2 + extent, height / 2 + extent);
-      gradient.addColorStop(0, '#5227FF');
-      gradient.addColorStop(1, '#FF9FFC');
+      gradient.addColorStop(0, '#1d7299');
+      gradient.addColorStop(1, '#9eeaff');
       schedule();
     }
 

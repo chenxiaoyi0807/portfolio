@@ -10,7 +10,7 @@
 .work .filter button{display:inline-flex;align-items:center;justify-content:center;min-height:42px;padding:8px 16px;gap:14px;border:1px solid #ffffff16;background:#ffffff04;color:#a7a9b1;font-size:12px;line-height:1}
 .work .filter button span{display:grid;place-items:center;min-width:23px;height:23px;padding:0 5px;border-radius:50px;background:#ffffff09;color:#9698a3;font-size:10px;font-variant-numeric:tabular-nums}
 .work .filter button:hover{border-color:#ffffff38;background:#ffffff09;color:#e8e9ed}
-.work .filter button.active{border-color:var(--brand-edge);background:var(--brand-gradient);color:#fff;box-shadow:0 1px 9px #c163e024 inset}
+.work .filter button.active{border-color:var(--brand-edge);background:var(--brand-gradient);color:#fff;box-shadow:0 1px 9px #65d8f124 inset}
 .work .filter button.active span{background:#ffffff15;color:#fff}
 .work .project-list{row-gap:38px}
 .work .project-description{padding:18px 2px 0;align-items:center;gap:10px}
@@ -37,7 +37,7 @@
   outline: none;
 }
 .work .project-card:focus-visible .project-description {
-  outline: 2px solid #c7a4ff;
+  outline: 2px solid var(--accent-ice);
   outline-offset: -2px;
   border-radius: 0 0 16px 16px;
 }
@@ -69,7 +69,7 @@
   z-index: -1;
   border-radius: 0 0 16px 16px;
   pointer-events: none;
-  background: linear-gradient(180deg, #171020, #29084c 48%, #5708bd);
+  background: linear-gradient(180deg, #12191f, #122632 52%, #164151);
   opacity: var(--card-glow, 0);
   transition: opacity .35s ease;
 }
@@ -89,7 +89,7 @@
 .work .project-card-tags span {
   border-radius: 999px;
   padding: 5px 9px;
-  background: color-mix(in srgb, #262329, #7b32bc calc(var(--card-glow, 0) * 100%));
+  background: color-mix(in srgb, #23282c, #245061 calc(var(--card-glow, 0) * 100%));
   color: #fff;
   font-size: 10px;
 }
@@ -109,18 +109,6 @@
   }
 }
 .work .project:hover .project-card .round-link svg { transform: none; }
-.work .project-card:focus-visible .round-link {
-  background: #fff;
-  border-color: #fff;
-  color: #5212ad;
-}
-@media (hover: hover) and (pointer: fine) {
-  .work .project-card:hover .round-link {
-    background: #fff;
-    border-color: #fff;
-    color: #5212ad;
-  }
-}
 @media (prefers-reduced-motion: reduce) {
   .work .project-card,
   .work .project-card .project-description::before,

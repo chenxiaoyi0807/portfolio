@@ -11,7 +11,7 @@ export default function GhostFibers() {
 
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const start = performance.now();
-    const colors = ['#6f4ac5', '#8b5cf6', '#dfd1fc'];
+    const colors = ['#245e79', '#408da8', '#b4edff'];
     let width = 0;
     let height = 0;
     let frame = 0;

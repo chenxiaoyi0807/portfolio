@@ -1,0 +1,92 @@
+:root {
+  --button-fill: var(--brand-gradient);
+  --button-edge: var(--brand-edge);
+  --button-light: inset 0 1px 1px #b5d9ea1f,
+    inset 0 -2px 3px #a5edffb3, inset 0 -8px 12px -5px #68dffcbd,
+    0 0 10px #46c7ee26;
+}
+
+.hero-showcase .hero-cta,
+.nav .nav-contact,
+.contact .contact-actions .pill,
+.not-found .pill,
+.artwork-button .expand,
+.lightbox-controls button,
+.work .filter button {
+  min-height: 42px;
+  border: 1px solid var(--button-edge);
+  border-radius: 13px;
+  background: var(--button-fill);
+  color: #f3f8fb;
+  box-shadow: var(--button-light);
+  transition: border-color .25s, box-shadow .25s, filter .25s;
+}
+
+.hero-showcase .hero-cta {
+  min-height: 52px;
+  padding-inline: 24px;
+  font-weight: 600;
+}
+
+.lightbox-controls button { padding: 8px 12px; }
+
+.work .filter button {
+  --button-fill: linear-gradient(180deg, #111923, #111923 65%, #14252f);
+  --button-light: inset 0 1px 1px #b5d9ea14;
+}
+
+.work .filter button[aria-pressed='true'] {
+  --button-fill: var(--brand-gradient);
+  --button-light: inset 0 1px 1px #b5d9ea1f,
+    inset 0 -2px 3px #a5edffb3, inset 0 -8px 12px -5px #68dffcbd,
+    0 0 10px #46c7ee26;
+  --button-edge: #7bdcf08c;
+}
+
+.work .filter button span { color: #c4e7f2; }
+
+.hero-showcase .hero-cta:hover,
+.nav .nav-contact:hover,
+.contact .contact-actions .pill:hover,
+.not-found .pill:hover,
+.work .filter button:hover,
+.lightbox-controls button:not(:disabled):hover {
+  border-color: #a1e9f6a6;
+  background: var(--button-fill);
+  color: #fff;
+  box-shadow: var(--button-light), 0 3px 16px #4bc9f344;
+  filter: brightness(1.13);
+}
+
+.hero-showcase .hero-cta:focus-visible {
+  outline: 2px solid var(--accent-ice);
+  outline-offset: 4px;
+}
+
+.work .project-card .round-link {
+  border-radius: 9px;
+  background: var(--brand-gradient);
+  border-color: var(--brand-edge);
+  color: #e4f9ff;
+  box-shadow: inset 0 -3px 6px -2px #70e4fca0;
+}
+
+.work .project-card:is(:hover, :focus-visible) .round-link { border-color: #9eeaff; }
+
+@media (max-width: 700px) {
+  .hero-showcase .hero-cta { min-height: 44px; padding-inline: 18px; }
+  .lightbox-controls { gap: 6px; }
+  .lightbox-controls button { padding-inline: 7px; }
+  .artwork-button .expand { min-height: 30px; border-radius: 9px; }
+  .work .filter button { min-height: 38px; border-radius: 11px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-showcase .hero-cta,
+  .nav .nav-contact,
+  .contact .contact-actions .pill,
+  .not-found .pill,
+  .artwork-button .expand,
+  .lightbox-controls button,
+  .work .filter button { transition: none; }
+}
