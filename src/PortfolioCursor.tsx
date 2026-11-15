@@ -2,15 +2,25 @@ import { motion, useMotionValue, useSpring, useTransform, useVelocity } from 'fr
 import { useEffect, useRef } from 'react';
 import './portfolio-cursor.css';
 
+const arrowRestDirection = -135;
+const arrowSpring = { stiffness: 380, damping: 32, mass: 0.6 };
+const labelSpring = { stiffness: 220, damping: 26, mass: 0.7 };
+
+function nearestRotation(current: number, target: number) {
+  const difference = target - current;
+  return target - 360 * Math.round(difference / 360);
+}
+
 export function PortfolioCursor() {
   const layerRef = useRef<HTMLDivElement>(null);
   const labelRef = useRef<HTMLDivElement>(null);
   const x = useMotionValue(0);
   const y = useMotionValue(0);
-  const labelX = useSpring(0, { stiffness: 230, damping: 27, mass: 0.7 });
-  const labelY = useSpring(0, { stiffness: 230, damping: 27, mass: 0.7 });
-  const tiltTarget = useTransform(useVelocity(x), [-1800, 0, 1800], [-7, 0, 7]);
-  const tilt = useSpring(tiltTarget, { stiffness: 280, damping: 25 });
+  const arrowRotation = useSpring(0, arrowSpring);
+  const labelX = useSpring(0, labelSpring);
+  const labelY = useSpring(0, labelSpring);
+  const labelTiltTarget = useTransform(useVelocity(x), [-1800, 0, 1800], [-8, 0, 8]);
+  const labelTilt = useSpring(labelTiltTarget, labelSpring);
 
   useEffect(() => {
     const layer = layerRef.current!;
@@ -22,6 +32,7 @@ export function PortfolioCursor() {
     let visible = false;
     let labelWidth = 0;
     let labelHeight = 0;
+    let returnToRest: number | undefined;
 
     function release() {
       delete layer.dataset.pressed;
@@ -29,6 +40,7 @@ export function PortfolioCursor() {
 
     function hide() {
       visible = false;
+      window.clearTimeout(returnToRest);
       delete page.dataset.portfolioCursor;
       release();
     }
@@ -51,6 +63,18 @@ export function PortfolioCursor() {
         : Math.max(8, clientY - labelHeight - 9);
 
       if (visible) {
+        const dx = clientX - x.get();
+        const dy = clientY - y.get();
+
+        if (Math.hypot(dx, dy) >= 1) {
+          const direction = Math.atan2(dy, dx) * 180 / Math.PI;
+          arrowRotation.set(nearestRotation(arrowRotation.get(), direction - arrowRestDirection));
+          window.clearTimeout(returnToRest);
+          returnToRest = window.setTimeout(() => {
+            arrowRotation.set(nearestRotation(arrowRotation.get(), 0));
+          }, 110);
+        }
+
         x.set(clientX);
         y.set(clientY);
         labelX.set(nextLabelX);
@@ -60,7 +84,8 @@ export function PortfolioCursor() {
         y.jump(clientY);
         labelX.jump(nextLabelX);
         labelY.jump(nextLabelY);
-        tilt.jump(0);
+        arrowRotation.jump(0);
+        labelTilt.jump(0);
         visible = true;
         page.dataset.portfolioCursor = '';
       }
@@ -83,16 +108,16 @@ export function PortfolioCursor() {
       listeners.abort();
       hide();
     };
-  }, [x, y, labelX, labelY, tilt]);
+  }, [x, y, arrowRotation, labelX, labelY, labelTilt]);
 
   return (
     <div ref={layerRef} className="portfolio-cursor" aria-hidden="true">
-      <motion.div className="portfolio-cursor-arrow" style={{ x, y, rotate: tilt }}>
+      <motion.div className="portfolio-cursor-arrow" style={{ x, y, rotate: arrowRotation }}>
         <svg viewBox="0 0 25 27">
-          <path d="M2 2 22 11.5 12.3 14.2 8.2 23.8 2 2Z" />
+          <path d="M3.8 2.7 20.8 10.7 Q23 11.8 20.7 12.5 L13.4 14.8 Q12.6 15 12.3 15.8 L9.4 22.6 Q8.4 24.7 7.5 22.5 L2.1 4.4 Q1.3 1.2 3.8 2.7Z" />
         </svg>
       </motion.div>
-      <motion.div className="portfolio-cursor-tag" style={{ x: labelX, y: labelY, rotate: tilt }}>
+      <motion.div className="portfolio-cursor-tag" style={{ x: labelX, y: labelY, rotate: labelTilt }}>
         <div ref={labelRef} className="portfolio-cursor-name">陈小黑</div>
       </motion.div>
     </div>
