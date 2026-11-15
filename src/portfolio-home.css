@@ -235,7 +235,7 @@ html:has(.folio) { scroll-padding-top: 0; }
 .folio-about-sketch { position: absolute; width: min(22vw, 290px); left: 64%; top: 37%; rotate: -13deg; color: var(--pen); }
 .folio-expertise { border-top: 1px solid #1113; padding-top: clamp(66px, 8vw, 100px); }
 .folio-expertise-accent { color: var(--pen); }
-.folio-capabilities { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; margin-top: clamp(28px, 5vw, 65px); }
+.folio-capabilities { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; margin-top: clamp(40px, 7vw, 96px); }
 .folio-capabilities div { border-top: 1px solid #1115; padding-top: 15px; }
 .folio-capability-icon {
   display: grid;
@@ -270,8 +270,9 @@ html:has(.folio) { scroll-padding-top: 0; }
   background: #111212;
 }
 .folio-contact h2 { font-size: clamp(45px, 8vw, 145px); font-weight: 800; line-height: 1.1; letter-spacing: -.075em; }
-.folio-contact-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+.folio-contact-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 13px; margin-top: clamp(42px, 4.5vw, 64px); }
 .folio-contact-actions > * { display: inline-flex; min-height: 46px; align-items: center; gap: 8px; border: 1px solid #20eb506b; border-radius: 9px; padding: 9px 14px; font-size: 14px; }
+.folio-contact-actions > a[href^="tel:"],
 .folio-contact-actions > *:hover { border-color: var(--neon); background: var(--neon); color: #101212; }
 .folio-contact-status { display: flex; justify-content: center; align-items: center; gap: 6px; min-height: 25px; margin-top: 12px; color: var(--neon); font-size: 13px; }
 .folio-footer { position: absolute; inset: auto var(--gutter) 24px; display: flex; justify-content: space-between; gap: 8px; font-size: 11px; color: #c2c8ca; }
