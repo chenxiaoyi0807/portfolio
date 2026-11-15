@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react';
 import { motion, type MotionProps, type MotionStyle, type MotionValue, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, Check, MessageCircle, Phone } from 'lucide-react';
+import { ArrowDown, ArrowUpRight, Bot, ChartNoAxesCombined, Check, Layers3, MessageCircle, MousePointer2, Phone } from 'lucide-react';
 import { Doodle } from './Doodle';
 import { InkHeading } from './InkHeading';
 import { copyText } from './copy-text';
@@ -10,11 +10,11 @@ import './portfolio-home.css';
 
 const categories = ['全部', '产品体验', '数字可视化', 'AI Agent'];
 const capabilities = [
-  ['产品体验设计', '梳理产品架构、核心流程与界面交互。'],
-  ['设计系统与视觉', '通过一致的设计语言组织复杂系统。'],
-  ['数字可视化', '连接空间、设备与数据，梳理信息层级。'],
-  ['AI 应用探索', '连接 Agent、业务工具与真实工作流程。'],
-];
+  [MousePointer2, '产品体验设计', '梳理产品架构、核心流程与界面交互。'],
+  [Layers3, '设计系统与视觉', '通过一致的设计语言组织复杂系统。'],
+  [ChartNoAxesCombined, '数字可视化', '连接空间、设备与数据，梳理信息层级。'],
+  [Bot, 'AI 应用探索', '连接 Agent、业务工具与真实工作流程。'],
+] as const;
 
 function projectHref(project: Project) {
   return sitePath(`projects/${project.slug}/`);
@@ -205,8 +205,12 @@ export function PortfolioHome() {
         <section id="expertise" className="folio-expertise folio-wrap">
           <InkHeading as="h2" lines={['让体验、视觉与 AI', <>落在真实业务里<span className="folio-expertise-accent">。</span></>]} />
           <div className="folio-capabilities">
-            {capabilities.map(([title, text], index) => (
-              <motion.div key={title} {...enterOnScroll(reduced, .09 * index, 16)}><h3>{title}</h3><p>{text}</p></motion.div>
+            {capabilities.map(([Icon, title, text], index) => (
+              <motion.div key={title} {...enterOnScroll(reduced, .09 * index, 16)}>
+                <Icon className="folio-capability-icon" strokeWidth={1.65} aria-hidden="true" />
+                <h3>{title}</h3>
+                <p>{text}</p>
+              </motion.div>
             ))}
           </div>
         </section>

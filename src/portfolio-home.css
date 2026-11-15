@@ -237,6 +237,13 @@ html:has(.folio) { scroll-padding-top: 0; }
 .folio-expertise-accent { color: var(--pen); }
 .folio-capabilities { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; margin-top: clamp(28px, 5vw, 65px); }
 .folio-capabilities div { border-top: 1px solid #1115; padding-top: 15px; }
+.folio-capability-icon {
+  display: block;
+  width: clamp(24px, 2.25vw, 35px);
+  height: auto;
+  margin-bottom: 13px;
+  color: var(--accent-ink);
+}
 .folio-capabilities h3 { font-size: clamp(16px, 1.8vw, 24px); margin-bottom: 8px; }
 .folio-capabilities p { color: #434848; font-size: 14px; line-height: 1.65; }
 
