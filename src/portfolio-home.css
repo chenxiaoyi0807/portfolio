@@ -76,27 +76,6 @@ html:has(.folio) { scroll-padding-top: 0; }
 .folio-intro-portrait svg { width: clamp(54px, 7vw, 107px); margin: 0 auto 12px; display: block; color: var(--pen); rotate: -9deg; }
 .folio-intro p { font-size: clamp(16px, 1.8vw, 29px); }
 .folio-intro strong { font-weight: 650; }
-.folio-fields-animated, .folio-fields-filter { display: none; }
-
-@media (prefers-reduced-motion: no-preference) {
-  .folio-design-fields { display: inline-block; position: relative; }
-  .folio-fields-full { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
-  .folio-fields-filter { display: block; position: absolute; width: 0; height: 0; }
-  .folio-fields-animated { display: inline-grid; }
-  .folio-fields-animated > span {
-    grid-area: 1 / 1;
-    white-space: nowrap;
-    animation: folio-morph-field 9s ease-in-out infinite;
-  }
-  .folio-fields-animated > span:nth-child(2) { animation-delay: -6s; }
-  .folio-fields-animated > span:nth-child(3) { animation-delay: -3s; }
-  .folio-design-fields[data-moving='false'] .folio-fields-animated > span { animation-play-state: paused; }
-}
-
-@keyframes folio-morph-field {
-  0%, 16.6667%, 100% { opacity: 1; filter: blur(0); }
-  33.3333%, 83.3333% { opacity: 0; filter: blur(10px); }
-}
 
 .folio-window {
   position: absolute;
@@ -353,6 +332,7 @@ html:has(.folio) { scroll-padding-top: 0; }
   .folio-intro { grid-area: 3 / 1; align-self: end; }
   .folio-intro-portrait svg { width: clamp(42px, 8svh, 60px); margin-bottom: 6px; }
   .folio-intro p { font-size: clamp(14px, 2.1svh, 17px); }
+  .folio-intro-break { display: none; }
   .folio-window { clip-path: var(--mobile-cut, inset(34% 35% round 54px)); }
   .folio-window img { object-position: 75% center; translate: none; }
 
