@@ -1,5 +1,5 @@
 import { useLayoutEffect, useRef, useState } from 'react';
-import { motion, type MotionStyle, type MotionValue, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { motion, type MotionStyle, type MotionValue, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, Check, MessageCircle, Phone, X } from 'lucide-react';
 import { Doodle } from './Doodle';
 import { copyText } from './copy-text';
@@ -112,6 +112,8 @@ function Works() {
 }
 
 function Contact() {
+  const section = useRef<HTMLElement>(null);
+  const inView = useInView(section, { amount: .15 });
   const [notice, setNotice] = useState<{ text: string; copied: boolean } | null>(null);
 
   async function copyWeChat() {
@@ -124,8 +126,8 @@ function Contact() {
   }
 
   return (
-    <section id="contact" className="folio-contact" aria-labelledby="folio-contact-title">
-      <div className="folio-contact-doodles" aria-hidden="true">
+    <section id="contact" ref={section} className="folio-contact" aria-labelledby="folio-contact-title">
+      <div className="folio-contact-doodles" data-moving={inView} aria-hidden="true">
         <Doodle name="portrait" className="folio-sketch-portrait" />
         <Doodle name="pencil" className="folio-sketch-pencil" />
         <Doodle name="chat" className="folio-sketch-chat" />

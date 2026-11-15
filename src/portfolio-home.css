@@ -3,15 +3,15 @@ html:has(.folio) { scroll-padding-top: 0; }
 .folio {
   --paper: #fcfcfa;
   --ink: #111212;
-  --pen: #087997;
-  --neon: #8ce9ff;
+  --pen: #0ac83c;
+  --neon: var(--accent-green);
   --gutter: clamp(16px, 4vw, 72px);
   background: var(--paper);
   color: var(--ink);
   font-family: 'Kanit', 'Microsoft YaHei', 'PingFang SC', sans-serif;
 }
 
-.folio :focus-visible { outline: 2px solid var(--pen); outline-offset: 4px; }
+.folio :focus-visible { outline: 2px solid var(--accent-ink); outline-offset: 4px; }
 .folio-wrap { width: min(1550px, calc(100% - var(--gutter) * 2)); margin-inline: auto; }
 
 .folio-nav {
@@ -231,7 +231,7 @@ html:has(.folio) { scroll-padding-top: 0; }
   font-weight: 700;
 }
 .folio-about p { max-width: 46ch; margin: 28px 0 18px; color: #383d3e; font-size: clamp(16px, 1.8vw, 24px); line-height: 1.85; }
-.folio-about a { display: inline-flex; align-items: center; gap: 7px; color: var(--pen); min-height: 36px; }
+.folio-about a { display: inline-flex; align-items: center; gap: 7px; color: var(--accent-ink); min-height: 36px; }
 .folio-about-sketch { position: absolute; width: min(22vw, 290px); left: 64%; top: 37%; rotate: -13deg; color: var(--pen); }
 .folio-expertise { border-top: 1px solid #1113; padding-top: clamp(66px, 8vw, 100px); }
 .folio-expertise h2 span { color: var(--pen); }
@@ -255,7 +255,7 @@ html:has(.folio) { scroll-padding-top: 0; }
 }
 .folio-contact h2 { font-size: clamp(45px, 8vw, 145px); font-weight: 800; line-height: 1.1; letter-spacing: -.075em; }
 .folio-contact-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
-.folio-contact-actions > * { display: inline-flex; min-height: 46px; align-items: center; gap: 8px; border: 1px solid #fff7; border-radius: 9px; padding: 9px 14px; font-size: 14px; }
+.folio-contact-actions > * { display: inline-flex; min-height: 46px; align-items: center; gap: 8px; border: 1px solid #20eb506b; border-radius: 9px; padding: 9px 14px; font-size: 14px; }
 .folio-contact-actions > *:hover { border-color: var(--neon); background: var(--neon); color: #101212; }
 .folio-contact-status { display: flex; justify-content: center; align-items: center; gap: 6px; min-height: 25px; margin-top: 12px; color: var(--neon); font-size: 13px; }
 .folio-footer { position: absolute; inset: auto var(--gutter) 24px; display: flex; justify-content: space-between; gap: 8px; font-size: 11px; color: #c2c8ca; }
@@ -265,6 +265,54 @@ html:has(.folio) { scroll-padding-top: 0; }
 .folio-sketch-pencil { right: 4%; top: 3%; rotate: 18deg; }
 .folio-sketch-chat { right: -3%; bottom: 14%; rotate: -17deg; }
 .folio-sketch-spark { left: 9%; bottom: 6%; rotate: 12deg; }
+
+@media (prefers-reduced-motion: no-preference) {
+  .folio-sketch-portrait { animation: doodle-nod 4.2s ease-in-out infinite; }
+  .folio-sketch-pencil { animation: doodle-write 3.8s .35s ease-in-out infinite; transform-origin: 21% 79%; }
+  .folio-sketch-chat { animation: doodle-bounce 3.6s .8s ease-in-out infinite; }
+  .folio-sketch-spark { animation: doodle-twinkle 4.4s .5s ease-in-out infinite; }
+  .folio-sketch-portrait .doodle-eyes {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: doodle-blink 4.7s .6s infinite;
+  }
+  .folio-sketch-chat .doodle-chat-marks path { animation: doodle-type 1.7s ease-in-out infinite; }
+  .folio-sketch-chat .doodle-chat-marks path:nth-child(2) { animation-delay: .15s; }
+  .folio-sketch-chat .doodle-chat-marks path:nth-child(3) { animation-delay: .3s; }
+  .folio-contact-doodles[data-moving='false'] *,
+  .folio-contact-doodles[data-moving='false'] svg { animation-play-state: paused; }
+}
+
+@keyframes doodle-nod {
+  0%, 100% { transform: translateY(0) rotate(-7deg); }
+  52% { transform: translateY(-9px) rotate(9deg); }
+}
+
+@keyframes doodle-blink {
+  0%, 85%, 94%, 100% { transform: scaleY(1); }
+  89%, 90% { transform: scaleY(.12); }
+}
+
+@keyframes doodle-write {
+  0%, 100% { transform: rotate(-12deg); }
+  40%, 68% { transform: translateX(8px) rotate(12deg); }
+  54% { transform: translateX(4px) rotate(4deg); }
+}
+
+@keyframes doodle-bounce {
+  0%, 46%, 80%, 100% { transform: translateY(0); }
+  62% { transform: translateY(-13px) rotate(8deg); }
+}
+
+@keyframes doodle-type {
+  0%, 58%, 100% { opacity: .5; transform: translateY(0); }
+  33% { opacity: 1; transform: translateY(-4px); }
+}
+
+@keyframes doodle-twinkle {
+  0%, 45%, 100% { transform: scale(.87) rotate(-12deg); }
+  67% { transform: scale(1.07) rotate(13deg); }
+}
 
 @media (max-width: 760px) {
   .folio-opening-copy {

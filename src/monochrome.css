@@ -1,5 +1,5 @@
 /* Restore the original black / silver palette while retaining interaction. */
-:root{--accent-ice:#8be8ff;--accent-ink:#17627a;--brand-gradient:linear-gradient(180deg,#111a26 0%,#101923 55%,#123847 80%,#287f95 100%);--brand-edge:#71b2ca4f}
+:root{--accent-green:#20eb50;--accent-ink:#087231;--brand-gradient:linear-gradient(180deg,#101a13 0%,#0e1c13 55%,#17442a 80%,#1d6935 100%);--brand-edge:#62cf844f}
 html,body,#root{background:#0c0c0c;color:#d7e2ea}
 .ambient-scene{display:none}
 .work::before,.about::before{display:none}
@@ -26,7 +26,7 @@ html,body,#root{background:#0c0c0c;color:#d7e2ea}
 .nav nav{background:transparent}.nav nav a{color:#b5b9c1}.nav nav a:hover{color:#d7e2ea}.nav nav a::after{background:#b4bac5}
 .brand-symbol{color:#d7e2ea}.nav-contact{border-color:#65666b;background:transparent}.nav-contact:hover{border-color:#afb5bf;background:#ffffff08}
 .hero-heading{background-image:linear-gradient(180deg,#5d626d 10%,#d7e2ea 98%);filter:none}
-.hero-meta,.hero-meta>span:first-child{color:#a6acb7}.status-dot{background:var(--accent-ice);box-shadow:0 0 12px #53d5f268}
+.hero-meta,.hero-meta>span:first-child{color:#a6acb7}.status-dot{background:var(--accent-green);box-shadow:0 0 12px #20eb5068}
 .hero-note p{color:#d7e2ea}.hero-note .micro{color:#899099}.hero-note>.muted{color:#7d8189}
 .orbit{background:radial-gradient(ellipse,#ffffff05,transparent 68%)}.orbit-ring,.orbit-ring::after{border-color:#ffffff0b;box-shadow:none}.orbit-star{color:#8a818e}
 .floating-art{background:#17171b;border-color:#ffffff38;box-shadow:0 25px 50px #0009}.floating-art span{background:#17171b;color:#b2b8c3}.floating-art:hover{border-color:#d7e2ea88;box-shadow:0 30px 60px #000a}
@@ -56,7 +56,7 @@ html,body,#root{background:#0c0c0c;color:#d7e2ea}
 .contact-actions .pill svg{flex:none}
 .contact-toast-region{position:fixed;top:22px;left:50%;transform:translateX(-50%);z-index:120;max-width:calc(100vw - 32px);pointer-events:none}
 .contact-toast{display:flex;align-items:center;gap:10px;padding:14px 20px;border:1px solid #ffffff30;border-radius:14px;background:#222225f5;color:#eef0f4;box-shadow:0 8px 32px #0005;font-size:13px;line-height:1.6;backdrop-filter:blur(16px)}
-.contact-toast svg{flex:none;color:var(--accent-ice)}
+.contact-toast svg{flex:none;color:var(--accent-green)}
 @media(max-width:700px){.contact .contact-actions .pill{width:100%;max-width:320px}.contact-toast-region{top:16px;width:max-content}.contact-toast{font-size:12px;padding:12px 16px}}
 .footer{border-color:#ffffff30;color:#82858d}.footer .brand{color:#d7e2ea}
 .detail-head .eyebrow,.page-caption{color:#888d98}.detail-head h1{color:#d7e2ea}.detail-en{color:#8b8e9a}.tags span{border-color:#4c4d56;color:#d7e2ea;background:transparent}.case-nav a:hover{color:#d7e2ea}

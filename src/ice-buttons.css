@@ -1,9 +1,9 @@
 :root {
   --button-fill: var(--brand-gradient);
   --button-edge: var(--brand-edge);
-  --button-light: inset 0 1px 1px #b5d9ea1f,
-    inset 0 -2px 3px #a5edffb3, inset 0 -8px 12px -5px #68dffcbd,
-    0 0 10px #46c7ee26;
+  --button-light: inset 0 1px 1px #aaf4b31f,
+    inset 0 -2px 3px #9afcafb3, inset 0 -8px 12px -5px #4ff272bd,
+    0 0 10px #28df5726;
 }
 
 .hero-showcase .hero-cta,
@@ -32,14 +32,14 @@
 
 .work .filter button {
   --button-fill: linear-gradient(180deg, #111923, #111923 65%, #14252f);
-  --button-light: inset 0 1px 1px #b5d9ea14;
+  --button-light: inset 0 1px 1px #aaf4b314;
 }
 
 .work .filter button[aria-pressed='true'] {
   --button-fill: var(--brand-gradient);
-  --button-light: inset 0 1px 1px #b5d9ea1f,
-    inset 0 -2px 3px #a5edffb3, inset 0 -8px 12px -5px #68dffcbd,
-    0 0 10px #46c7ee26;
+  --button-light: inset 0 1px 1px #aaf4b31f,
+    inset 0 -2px 3px #9afcafb3, inset 0 -8px 12px -5px #4ff272bd,
+    0 0 10px #28df5726;
   --button-edge: #7bdcf08c;
 }
 
@@ -51,15 +51,15 @@
 .not-found .pill:hover,
 .work .filter button:hover,
 .lightbox-controls button:not(:disabled):hover {
-  border-color: #a1e9f6a6;
+  border-color: #9afcaba6;
   background: var(--button-fill);
   color: #fff;
-  box-shadow: var(--button-light), 0 3px 16px #4bc9f344;
+  box-shadow: var(--button-light), 0 3px 16px #33d96444;
   filter: brightness(1.13);
 }
 
 .hero-showcase .hero-cta:focus-visible {
-  outline: 2px solid var(--accent-ice);
+  outline: 2px solid var(--accent-green);
   outline-offset: 4px;
 }
 
