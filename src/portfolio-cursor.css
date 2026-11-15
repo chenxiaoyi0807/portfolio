@@ -1,0 +1,53 @@
+.portfolio-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  overflow: clip;
+  visibility: hidden;
+  pointer-events: none;
+}
+
+.portfolio-cursor-arrow,
+.portfolio-cursor-tag {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform-origin: top left;
+}
+
+.portfolio-cursor-arrow svg {
+  display: block;
+  width: 25px;
+  height: 27px;
+  margin: -2px 0 0 -2px;
+  fill: var(--accent-green);
+  stroke: #12311b;
+  stroke-width: 1.3px;
+  stroke-linejoin: round;
+  transform-origin: 2px 2px;
+  transition: scale 120ms ease-out;
+}
+
+.portfolio-cursor-name {
+  padding: 4px 9px;
+  border: 1px solid #12311b;
+  border-radius: 999px;
+  background: var(--accent-green);
+  color: #101212;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  white-space: nowrap;
+  transform-origin: left center;
+  transition: scale 120ms ease-out;
+}
+
+.portfolio-cursor[data-pressed] :is(svg, .portfolio-cursor-name) {
+  scale: .92;
+}
+
+@media (any-hover: hover) and (any-pointer: fine) and (prefers-reduced-motion: no-preference) and (forced-colors: none) {
+  html[data-portfolio-cursor] .portfolio-cursor { visibility: visible; }
+  html[data-portfolio-cursor] body,
+  html[data-portfolio-cursor] body * { cursor: none !important; }
+}
