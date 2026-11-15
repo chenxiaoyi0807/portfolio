@@ -207,7 +207,10 @@ export function PortfolioHome() {
           <div className="folio-capabilities">
             {capabilities.map(([Icon, title, text], index) => (
               <motion.div key={title} {...enterOnScroll(reduced, .09 * index, 16)}>
-                <Icon className="folio-capability-icon" strokeWidth={1.65} aria-hidden="true" />
+                <span className="folio-capability-icon" aria-hidden="true">
+                  <Icon className="folio-capability-understroke" strokeWidth={1.2} />
+                  <Icon strokeWidth={1.8} />
+                </span>
                 <h3>{title}</h3>
                 <p>{text}</p>
               </motion.div>
