@@ -8,7 +8,8 @@ import { imageFor, projects, type Project } from './data';
 import { sitePath } from './site-path';
 import './portfolio-home.css';
 
-const Galaxy = lazy(() => import('./Galaxy'));
+const Particles = lazy(() => import('./Particles'));
+const warpParticleColors = ['#ffffff', '#bcd4ff', '#ffffff'];
 
 const categories = ['全部', '产品体验', '数字可视化', 'AI Agent'];
 const capabilities = [
@@ -155,18 +156,20 @@ function Contact({ reduced }: { reduced: boolean | null }) {
   return (
     <section id="contact" ref={section} className="folio-contact" aria-labelledby="folio-contact-title">
       {hasEntered && (
-        <div className="folio-contact-galaxy" aria-hidden="true">
+        <div className="folio-contact-particles" aria-hidden="true">
           <Suspense fallback={null}>
-            <Galaxy
-              density={1.2}
-              glowIntensity={0.4}
-              starSpeed={3}
-              layers={6}
-              mouseRepulsion={false}
-              mouseInteraction={false}
-              clickWarp={false}
-              disableAnimation={Boolean(reduced)}
-              dpr={0.75}
+            <Particles
+              particleCount={1600}
+              particleColors={warpParticleColors}
+              particleBaseSize={45}
+              glow={0.6}
+              twinkle={0}
+              drift="forward"
+              driftSpeed={1.2}
+              moveParticlesOnHover
+              clickBurst
+              paused={Boolean(reduced)}
+              pixelRatio={1}
             />
           </Suspense>
         </div>

@@ -280,7 +280,7 @@ html:has(.folio) { scroll-padding-top: 0; }
   color: #fafaf8;
   background: #111212;
 }
-.folio-contact-galaxy {
+.folio-contact-particles {
   position: absolute;
   inset: 0;
   z-index: -2;
