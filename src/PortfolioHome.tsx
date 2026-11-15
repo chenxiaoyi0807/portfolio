@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useLayoutEffect, useRef, useState } from 'react';
 import { motion, type MotionStyle, type MotionValue, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, Check, MessageCircle, Phone, X } from 'lucide-react';
 import { Doodle } from './Doodle';
@@ -143,6 +143,11 @@ function Contact() {
 }
 
 export function PortfolioHome() {
+  useLayoutEffect(() => {
+    const anchor = window.location.hash.slice(1);
+    if (anchor) document.getElementById(anchor)?.scrollIntoView({ behavior: 'instant' });
+  }, []);
+
   return (
     <div id="top" className="folio">
       <a className="skip" href="#main">跳转到内容</a>
