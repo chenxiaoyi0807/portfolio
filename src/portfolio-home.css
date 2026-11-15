@@ -236,7 +236,19 @@ html:has(.folio) { scroll-padding-top: 0; }
 .folio-expertise { border-top: 1px solid #1113; padding-top: clamp(66px, 8vw, 100px); }
 .folio-expertise-accent { color: var(--pen); }
 .folio-capabilities { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; margin-top: clamp(40px, 7vw, 96px); }
-.folio-capabilities div { border-top: 1px solid #1115; padding-top: 15px; }
+.folio-capabilities > div {
+  border: 1px solid #1112;
+  border-radius: 14px;
+  padding: clamp(22px, 2.1vw, 32px) clamp(12px, 1.7vw, 26px) clamp(18px, 2vw, 28px);
+}
+
+@media (hover: hover) {
+  .folio-capabilities > div:hover { border-color: var(--pen); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .folio-capabilities > div { transition: border-color 180ms ease; }
+}
 .folio-capability-icon {
   display: grid;
   width: clamp(24px, 2.25vw, 35px);
