@@ -1,4 +1,6 @@
 .portfolio-cursor {
+  --cursor-accent: #f39c2a;
+  --cursor-edge: #44280d;
   position: fixed;
   inset: 0;
   z-index: 150;
@@ -20,8 +22,8 @@
   width: 25px;
   height: 27px;
   margin: -2px 0 0 -2px;
-  fill: var(--accent-green);
-  stroke: #12311b;
+  fill: var(--cursor-accent);
+  stroke: var(--cursor-edge);
   stroke-width: 1.3px;
   stroke-linejoin: round;
   transform-origin: 2px 2px;
@@ -30,9 +32,9 @@
 
 .portfolio-cursor-name {
   padding: 4px 9px;
-  border: 1px solid #12311b;
+  border: 1px solid var(--cursor-edge);
   border-radius: 999px;
-  background: var(--accent-green);
+  background: var(--cursor-accent);
   color: #101212;
   font-size: 12px;
   font-weight: 600;

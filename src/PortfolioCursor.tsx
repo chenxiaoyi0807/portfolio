@@ -118,7 +118,7 @@ export function PortfolioCursor() {
         </svg>
       </motion.div>
       <motion.div className="portfolio-cursor-tag" style={{ x: labelX, y: labelY, rotate: labelTilt }}>
-        <div ref={labelRef} className="portfolio-cursor-name">陈小黑</div>
+        <div ref={labelRef} className="portfolio-cursor-name">你</div>
       </motion.div>
     </div>
   );
