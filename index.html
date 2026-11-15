@@ -1,15 +1,23 @@
 <!doctype html><html lang="zh-CN"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="theme-color" content="#0c0c0c"/><meta name="description" content="CHEN XIAO HEI 的设计作品集，呈现产品体验、数字可视化与 AI Agent 应用实践。"/><title>CHEN XIAO HEI — 产品体验设计作品集</title>
+<style>
+  html[data-home-reload], html[data-home-reload] body { background: #fcfcfa; }
+  html[data-home-reload] { scroll-behavior: auto !important; overflow-anchor: none; }
+  html[data-home-reload] #root { visibility: hidden; }
+</style>
 <script>
-  // Reloading a plain homepage URL should replay the opening from the top.
+  // Keep the old scroll position out of the first painted homepage frame.
   const homePath = '%BASE_URL%'.replace(/\/?$/, '/');
   const isHome = location.pathname === homePath || location.pathname === homePath.slice(0, -1);
   const navigation = performance.getEntriesByType('navigation')[0];
-  if (isHome && !location.hash && navigation?.type === 'reload' && 'scrollRestoration' in history) {
-    const previous = history.scrollRestoration;
-    history.scrollRestoration = 'manual';
-    addEventListener('pageshow', () => {
-      requestAnimationFrame(() => { history.scrollRestoration = previous; });
-    }, { once: true });
+  if (isHome && !location.hash && navigation?.type === 'reload') {
+    document.documentElement.setAttribute('data-home-reload', '');
+    if ('scrollRestoration' in history) {
+      const previous = history.scrollRestoration;
+      history.scrollRestoration = 'manual';
+      addEventListener('pageshow', () => {
+        requestAnimationFrame(() => { history.scrollRestoration = previous; });
+      }, { once: true });
+    }
   }
 </script>
 </head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>

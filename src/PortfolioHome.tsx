@@ -170,6 +170,14 @@ function Contact({ reduced }: { reduced: boolean | null }) {
 export function PortfolioHome() {
   const reduced = useReducedMotion();
   useLayoutEffect(() => {
+    const root = document.documentElement;
+    if (root.hasAttribute('data-home-reload')) {
+      // Position the opening before showing the mounted React tree.
+      window.scrollTo({ top: 0, behavior: 'instant' });
+      root.removeAttribute('data-home-reload');
+      return;
+    }
+
     const anchor = window.location.hash.slice(1);
     if (anchor) document.getElementById(anchor)?.scrollIntoView({ behavior: 'instant' });
   }, []);
