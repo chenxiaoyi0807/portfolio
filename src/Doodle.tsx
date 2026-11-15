@@ -1,12 +1,18 @@
+import { useId } from 'react';
 import type { ReactNode } from 'react';
 
 type DoodleName = 'hey' | 'portrait' | 'pencil' | 'chat' | 'spark';
 
 const drawings: Record<DoodleName, ReactNode> = {
-  hey: <>
-    <path d="M13 74 35 18M47 13 27 68M17 49 41 40M48 36 65 26M55 14 37 64 57 55M48 13 79 3M72 24 78 42 98 12M78 42 66 70M110 13 96 48M92 58l-1 2M16 83 48 73 81 67" />
-    <path opacity=".5" strokeWidth="1.3" d="M15 73 35 22M37 65 57 56M15 85C39 75 65 70 83 68" />
-  </>,
+  hey: <g fill="currentColor" stroke="none">
+    <path d="M7 76l3-12 3-8 1-7 4-11 3-12 4-10 3-1 2-3 1 3-2 7-4 11-3 13-3 8-2 9-4 11-1 5-2 1-1-4z" />
+    <path d="M5 51l4-6 7-4 10-3 9-4 11-3 3 1-2 3-5 2-2 3-8 3-12 5-9 4-5 2 1-3z" />
+    <path d="M26 71l5-15 1-7 3-9 1-8 5-12 2-10 3-6 3-1 1 3-2 9-4 13-3 9-1 7-5 13-3 13-3 6-2-1 1-4z" />
+    <path d="M41 21l5-4 10-3 11-4 15-4 4 1-1 3-7 2-11 5-10 3-4 1-3 6-3 11 10-4 7-2 2 2-2 3-7 3-9 4-3 1-2 11 10-3 7-3 6-1 1 3-3 4-8 3-12 5-7 1-2-3 2-9 2-12 4-13 2-5z" />
+    <path d="M66 16l4-1 3 4 3 8 5 11 2 2 7-13 5-10 7-10 4-5 3-1-2 5-4 9-8 16-8 18-7 19-8 17-3 3-2-1 3-11 5-14 4-14-4-9-4-10-4-9z" />
+    <path d="M110 24l3-8 3-2 1 3-2 7-6 17-3 6-3 2-1-3 2-8zM100 54l3-1 2 2-1 4-3 2-3-2v-3z" />
+    <path d="M12 88l12-6 13-4 15-5 12-3 10-4 6-1-1 4-3 3-13 4-11 3-17 6-14 3-9 3-2-1z" />
+  </g>,
   portrait: <>
     <path d="M27 46C19 37 13 27 17 21c5 1 10 7 13 8L24 11l18 11 2-14 11 14C66 8 80 8 95 7L76 20l24-4-15 15 11 1-14 14M28 43c-3 13-2 31 7 42 10 13 33 14 44 0 10-12 12-25 8-43M27 52c-10-8-14 7-9 13 2 3 5 4 8 3m62-16c10-7 13 7 7 14-2 3-4 3-8 3M36 40c13-9 30-10 42-6M37 70c12 7 26 7 37-2-3 15-28 20-37 2ZM51 54l-3 10 9 1" />
     <path d="M31 51c6-7 17-7 23-1 3 9-6 15-14 14-7-1-10-5-9-13Zm28-1c5-6 16-7 22-1 3 9-5 15-13 15-7 0-11-5-9-14Zm-5 3 5-1M37 31l18-8m1 5 24-11m-11 13 17-6" />
@@ -29,11 +35,22 @@ const drawings: Record<DoodleName, ReactNode> = {
 };
 
 export function Doodle({ name, className }: { name: DoodleName; className?: string }) {
+  const brushId = useId();
+  const isBrush = name === 'hey';
+
   return (
-    <svg className={className} viewBox={name === 'hey' ? '0 0 120 90' : '0 0 114 106'}
+    <svg className={className} viewBox={name === 'hey' ? '0 0 121 94' : '0 0 114 106'}
       fill="none" stroke="currentColor" strokeWidth={name === 'hey' ? 4.5 : 2.4}
       strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-      {drawings[name]}
+      {isBrush && (
+        <defs>
+          <filter id={brushId} x="-8%" y="-8%" width="116%" height="116%">
+            <feTurbulence type="fractalNoise" baseFrequency=".62" numOctaves="2" seed="9" />
+            <feDisplacementMap in="SourceGraphic" scale="1.8" xChannelSelector="R" yChannelSelector="G" />
+          </filter>
+        </defs>
+      )}
+      <g filter={isBrush ? `url(#${brushId})` : undefined}>{drawings[name]}</g>
     </svg>
   );
 }

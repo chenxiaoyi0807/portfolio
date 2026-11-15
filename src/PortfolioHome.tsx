@@ -42,6 +42,8 @@ function enterOnScroll(reduced: boolean | null, delay = 0, rise = 24): MotionPro
 
 function Opening() {
   const track = useRef<HTMLElement>(null);
+  const portrait = useRef<HTMLDivElement>(null);
+  const portraitInView = useInView(portrait);
   const reduced = useReducedMotion();
   const { scrollYProgress } = useScroll({ target: track, offset: ['start start', 'end end'] });
   const desktopCut = useTransform(scrollYProgress, [0, .15, .9], [
@@ -64,7 +66,7 @@ function Opening() {
             <h1>I'm Chen<br /> Xiao Hei.</h1>
           </motion.div>
           <div className="folio-intro">
-            <motion.div className="folio-intro-portrait" {...enterOnLoad(reduced, .59)}><Doodle name="portrait" /></motion.div>
+            <motion.div className="folio-intro-portrait" ref={portrait} data-moving={portraitInView} {...enterOnLoad(reduced, .59)}><Doodle name="portrait" /></motion.div>
             <motion.p {...enterOnLoad(reduced, .76)}>我是陈小黑，<br />专注于<strong>产品体验、视觉设计<br className="folio-intro-break" />与 AI 应用实践</strong>。</motion.p>
           </div>
         </motion.div>

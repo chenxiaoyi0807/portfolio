@@ -67,7 +67,7 @@ html:has(.folio) { scroll-padding-top: 0; }
   top: -41%;
   z-index: 1;
   rotate: -13deg;
-  color: var(--pen);
+  color: #00e83e;
   animation: folio-handwriting .82s .21s both cubic-bezier(.2,.65,.2,1);
 }
 @keyframes folio-handwriting { from { clip-path: inset(0 100% 0 0); } }
@@ -267,11 +267,15 @@ html:has(.folio) { scroll-padding-top: 0; }
 .folio-sketch-spark { left: 9%; bottom: 6%; rotate: 12deg; }
 
 @media (prefers-reduced-motion: no-preference) {
+  .folio-intro-portrait svg { animation: doodle-nod 2.9s .75s ease-in-out infinite; }
+  .folio-intro-portrait[data-moving='false'] svg,
+  .folio-intro-portrait[data-moving='false'] .doodle-eyes { animation-play-state: paused; }
   .folio-sketch-portrait { animation: doodle-nod 2.6s ease-in-out infinite; }
   .folio-sketch-pencil { animation: doodle-write 2.3s .25s ease-in-out infinite; transform-origin: 21% 79%; }
   .folio-sketch-chat { animation: doodle-bounce 2s .4s ease-in-out infinite; }
   .folio-sketch-spark { animation: doodle-twinkle 2.8s .3s ease-in-out infinite; }
-  .folio-sketch-portrait .doodle-eyes {
+  .folio-sketch-portrait .doodle-eyes,
+  .folio-intro-portrait .doodle-eyes {
     transform-box: fill-box;
     transform-origin: center;
     animation: doodle-blink 3.1s .4s infinite;
