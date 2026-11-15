@@ -2,6 +2,7 @@ import { useLayoutEffect, useRef, useState } from 'react';
 import { motion, type MotionProps, type MotionStyle, type MotionValue, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, Check, MessageCircle, Phone } from 'lucide-react';
 import { Doodle } from './Doodle';
+import { InkHeading } from './InkHeading';
 import { copyText } from './copy-text';
 import { imageFor, projects, type Project } from './data';
 import { sitePath } from './site-path';
@@ -63,7 +64,7 @@ function Opening() {
         <motion.div className="folio-opening-copy" style={reduced ? undefined : { opacity: introOpacity }}>
           <motion.div className="folio-name" {...enterOnLoad(reduced, .08)}>
             <Doodle name="hey" className="folio-hey" />
-            <h1>I'm Chen<br /> Xiao Hei.</h1>
+            <InkHeading as="h1" lines={["I'm Chen", ' Xiao Hei.']} />
           </motion.div>
           <div className="folio-intro">
             <motion.div className="folio-intro-portrait" ref={portrait} data-moving={portraitInView} {...enterOnLoad(reduced, .59)}><Doodle name="portrait" /></motion.div>
@@ -99,7 +100,7 @@ function Works({ reduced }: { reduced: boolean | null }) {
     <section id="work" className="folio-work" aria-labelledby="folio-work-title">
       <div className="folio-wrap">
         <div className="folio-work-bar">
-          <motion.h2 id="folio-work-title" {...enterOnScroll(reduced)}>精选作品<span>（06）</span></motion.h2>
+          <InkHeading as="h2" id="folio-work-title" lines={[<>精选作品<span className="folio-work-count">（06）</span></>]} />
           <motion.div className="folio-filters" role="group" aria-label="作品分类" {...enterOnScroll(reduced, .16, 10)}>
             {categories.map(item => (
               <button key={item} type="button" aria-pressed={category === item} onClick={() => changeCategory(item)}>
@@ -156,7 +157,7 @@ function Contact({ reduced }: { reduced: boolean | null }) {
         <Doodle name="chat" className="folio-sketch-chat" />
         <Doodle name="spark" className="folio-sketch-spark" />
       </motion.div>
-      <motion.h2 id="folio-contact-title" {...enterOnScroll(reduced)}>让好的想法，<br />成为好的体验。</motion.h2>
+      <InkHeading as="h2" id="folio-contact-title" lines={['让好的想法，', '成为好的体验。']} />
       <motion.div className="folio-contact-actions" {...enterOnScroll(reduced, .2, 14)}>
         <button type="button" onClick={copyWeChat}><MessageCircle size={21} aria-hidden="true" /> 获取微信联系方式</button>
         <a href="tel:13524542838"><Phone size={21} aria-hidden="true" /> 135 2454 2838</a>
@@ -197,12 +198,12 @@ export function PortfolioHome() {
         <Works reduced={reduced} />
         <section id="about" className="folio-about folio-wrap">
           <Doodle name="spark" className="folio-about-sketch" />
-          <motion.h2 {...enterOnScroll(reduced)}>界面之外，<br />看见真实需求。</motion.h2>
+          <InkHeading as="h2" lines={['界面之外，', '看见真实需求。']} />
           <motion.p {...enterOnScroll(reduced, .15)}>我是陈小黑，专注于产品体验、视觉设计与 AI 应用实践。我从业务目标与用户问题出发，梳理信息架构、核心流程与关键交互，把复杂业务转化为清晰、连贯的产品体验。</motion.p>
           <motion.a href="#expertise" {...enterOnScroll(reduced, .27, 10)}>设计能力 <ArrowDown size={16} aria-hidden="true" /></motion.a>
         </section>
         <section id="expertise" className="folio-expertise folio-wrap">
-          <motion.h2 {...enterOnScroll(reduced)}>让体验、视觉与 AI<br />落在真实业务里<span>。</span></motion.h2>
+          <InkHeading as="h2" lines={['让体验、视觉与 AI', <>落在真实业务里<span className="folio-expertise-accent">。</span></>]} />
           <div className="folio-capabilities">
             {capabilities.map(([title, text], index) => (
               <motion.div key={title} {...enterOnScroll(reduced, .09 * index, 16)}><h3>{title}</h3><p>{text}</p></motion.div>

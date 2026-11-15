@@ -120,7 +120,7 @@ html:has(.folio) { scroll-padding-top: 0; }
 }
 .folio-work-bar { display: flex; flex-wrap: wrap; align-items: end; justify-content: space-between; gap: 20px; margin-bottom: 25px; }
 .folio-work-bar h2 { font-size: clamp(26px, 3vw, 47px); line-height: 1.2; }
-.folio-work-bar h2 span { font-size: .4em; vertical-align: top; color: var(--neon); }
+.folio-work-count { font-size: .4em; vertical-align: top; color: var(--neon); }
 .folio-filters { display: flex; flex-wrap: wrap; gap: 8px; }
 .folio-filters button { min-height: 36px; padding: 5px 11px; border-radius: 24px; border: 1px solid #f7f7f651; font-size: 12px; }
 .folio-filters button[aria-pressed='true'], .folio-filters button:hover { border-color: var(--neon); color: var(--neon); }
@@ -234,7 +234,7 @@ html:has(.folio) { scroll-padding-top: 0; }
 .folio-about a { display: inline-flex; align-items: center; gap: 7px; color: var(--accent-ink); min-height: 36px; }
 .folio-about-sketch { position: absolute; width: min(22vw, 290px); left: 64%; top: 37%; rotate: -13deg; color: var(--pen); }
 .folio-expertise { border-top: 1px solid #1113; padding-top: clamp(66px, 8vw, 100px); }
-.folio-expertise h2 span { color: var(--pen); }
+.folio-expertise-accent { color: var(--pen); }
 .folio-capabilities { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; margin-top: clamp(28px, 5vw, 65px); }
 .folio-capabilities div { border-top: 1px solid #1115; padding-top: 15px; }
 .folio-capabilities h3 { font-size: clamp(16px, 1.8vw, 24px); margin-bottom: 8px; }
@@ -328,6 +328,7 @@ html:has(.folio) { scroll-padding-top: 0; }
   .folio-name { grid-area: 1 / 1; align-self: start; margin-top: clamp(20px, 4svh, 50px); text-align: center; }
   .folio-name h1 { font-size: clamp(39px, 10vw, 62px); line-height: .83; }
   .folio-name br { display: none; }
+  .folio-name .ink-heading-line + br + .ink-heading-line { margin-inline-start: .19em; }
   .folio-hey { width: 35%; left: 44%; top: -72%; }
   .folio-intro { grid-area: 3 / 1; align-self: end; }
   .folio-intro-portrait svg { width: clamp(42px, 8svh, 60px); margin-bottom: 6px; }

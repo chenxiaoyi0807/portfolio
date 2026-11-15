@@ -1,0 +1,31 @@
+.ink-filter-definition { position: absolute; pointer-events: none; }
+
+.ink-heading-line {
+  display: inline-block;
+  max-width: 100%;
+  vertical-align: top;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .ink-heading[data-started='false'] .ink-heading-line { opacity: 0; }
+
+  .ink-heading[data-started='true'] {
+    animation: ink-edge 1.52s step-end both;
+  }
+
+  .ink-heading[data-started='true'] .ink-heading-line {
+    animation: ink-form 1.28s var(--ink-delay) cubic-bezier(.3, .2, .25, 1) both;
+  }
+
+  @keyframes ink-edge {
+    from { filter: var(--ink-filter); }
+    to { filter: none; }
+  }
+
+  @keyframes ink-form {
+    0% { opacity: 0; filter: blur(.18em); transform: translateY(.18em) scale(.95, .81); }
+    36% { opacity: .88; filter: blur(.105em); transform: translateY(.055em) scale(1.015, .92); }
+    68% { opacity: 1; filter: blur(.036em); transform: translateY(0) scale(1, 1.015); }
+    100% { opacity: 1; filter: blur(0); transform: none; }
+  }
+}
