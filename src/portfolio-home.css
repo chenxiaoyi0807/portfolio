@@ -231,10 +231,9 @@ html:has(.folio) { scroll-padding-top: 0; }
   font-weight: 700;
 }
 .folio-about p { max-width: 46ch; margin: 28px 0 18px; color: #383d3e; font-size: clamp(16px, 1.8vw, 24px); line-height: 1.85; }
-.folio-about a { display: inline-flex; align-items: center; gap: 7px; color: var(--accent-ink); min-height: 36px; }
 .folio-about-sketch { position: absolute; width: min(22vw, 290px); left: 64%; top: 37%; rotate: -13deg; color: var(--pen); }
 .folio-expertise { border-top: 1px solid #1113; padding-top: clamp(66px, 8vw, 100px); }
-.folio-expertise-accent { color: var(--pen); }
+.folio-heading-accent { color: var(--pen); }
 .folio-capabilities { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 15px; margin-top: clamp(40px, 7vw, 96px); }
 .folio-capabilities > div {
   border: 1px solid #1112;

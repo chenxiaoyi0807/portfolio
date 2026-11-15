@@ -198,12 +198,11 @@ export function PortfolioHome() {
         <Works reduced={reduced} />
         <section id="about" className="folio-about folio-wrap">
           <Doodle name="spark" className="folio-about-sketch" />
-          <InkHeading as="h2" lines={['界面之外，', '看见真实需求。']} />
+          <InkHeading as="h2" lines={['界面之外，', <>看见真实需求<span className="folio-heading-accent">。</span></>]} />
           <motion.p {...enterOnScroll(reduced, .15)}>我是陈小黑，专注于产品体验、视觉设计与 AI 应用实践。我从业务目标与用户问题出发，梳理信息架构、核心流程与关键交互，把复杂业务转化为清晰、连贯的产品体验。</motion.p>
-          <motion.a href="#expertise" {...enterOnScroll(reduced, .27, 10)}>设计能力 <ArrowDown size={16} aria-hidden="true" /></motion.a>
         </section>
         <section id="expertise" className="folio-expertise folio-wrap">
-          <InkHeading as="h2" lines={['让体验、视觉与 AI', <>落在真实业务里<span className="folio-expertise-accent">。</span></>]} />
+          <InkHeading as="h2" lines={['让体验、视觉与 AI', <>落在真实业务里<span className="folio-heading-accent">。</span></>]} />
           <div className="folio-capabilities">
             {capabilities.map(([Icon, title, text], index) => (
               <motion.div key={title} {...enterOnScroll(reduced, .09 * index, 16)}>
