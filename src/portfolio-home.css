@@ -280,6 +280,14 @@ html:has(.folio) { scroll-padding-top: 0; }
   color: #fafaf8;
   background: #111212;
 }
+.folio-contact-galaxy {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  opacity: .82;
+  mask-image: radial-gradient(ellipse at center, #0009 10%, #000 72%);
+}
 .folio-contact h2 { font-size: clamp(45px, 8vw, 145px); font-weight: 800; line-height: 1.1; letter-spacing: -.075em; }
 .folio-contact-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 13px; margin-top: clamp(42px, 4.5vw, 64px); }
 .folio-contact-actions > * { display: inline-flex; min-height: 46px; align-items: center; gap: 8px; border: 1px solid #20eb506b; border-radius: 9px; padding: 9px 14px; font-size: 14px; }

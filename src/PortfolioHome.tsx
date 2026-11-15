@@ -1,4 +1,4 @@
-import { useLayoutEffect, useRef, useState } from 'react';
+import { lazy, Suspense, useLayoutEffect, useRef, useState } from 'react';
 import { motion, type MotionProps, type MotionStyle, type MotionValue, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDown, ArrowUpRight, Bot, ChartNoAxesCombined, Check, Layers3, MessageCircle, MousePointer2, Phone } from 'lucide-react';
 import { Doodle } from './Doodle';
@@ -7,6 +7,8 @@ import { copyText } from './copy-text';
 import { imageFor, projects, type Project } from './data';
 import { sitePath } from './site-path';
 import './portfolio-home.css';
+
+const Galaxy = lazy(() => import('./Galaxy'));
 
 const categories = ['全部', '产品体验', '数字可视化', 'AI Agent'];
 const capabilities = [
@@ -138,6 +140,7 @@ function Works({ reduced }: { reduced: boolean | null }) {
 function Contact({ reduced }: { reduced: boolean | null }) {
   const section = useRef<HTMLElement>(null);
   const inView = useInView(section, { amount: .15 });
+  const hasEntered = useInView(section, { once: true, amount: .05 });
   const [notice, setNotice] = useState<{ text: string; copied: boolean } | null>(null);
 
   async function copyWeChat() {
@@ -151,6 +154,23 @@ function Contact({ reduced }: { reduced: boolean | null }) {
 
   return (
     <section id="contact" ref={section} className="folio-contact" aria-labelledby="folio-contact-title">
+      {hasEntered && (
+        <div className="folio-contact-galaxy" aria-hidden="true">
+          <Suspense fallback={null}>
+            <Galaxy
+              density={1.2}
+              glowIntensity={0.4}
+              starSpeed={3}
+              layers={6}
+              mouseRepulsion={false}
+              mouseInteraction={false}
+              clickWarp={false}
+              disableAnimation={Boolean(reduced)}
+              dpr={0.75}
+            />
+          </Suspense>
+        </div>
+      )}
       <motion.div className="folio-contact-doodles" data-moving={inView} aria-hidden="true" {...enterOnScroll(reduced, .28, 0)}>
         <Doodle name="portrait" className="folio-sketch-portrait" />
         <Doodle name="pencil" className="folio-sketch-pencil" />
