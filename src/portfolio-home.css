@@ -68,12 +68,12 @@ html:has(.folio) { scroll-padding-top: 0; }
   z-index: 1;
   rotate: -13deg;
   color: var(--pen);
-  animation: folio-handwriting .58s .14s both cubic-bezier(.2,.65,.2,1);
+  animation: folio-handwriting .82s .21s both cubic-bezier(.2,.65,.2,1);
 }
 @keyframes folio-handwriting { from { clip-path: inset(0 100% 0 0); } }
 
 .folio-intro { grid-column: 3; justify-self: center; text-align: center; line-height: 1.55; }
-.folio-intro > svg { width: clamp(54px, 7vw, 107px); margin: 0 auto 12px; display: block; color: var(--pen); rotate: -9deg; }
+.folio-intro-portrait svg { width: clamp(54px, 7vw, 107px); margin: 0 auto 12px; display: block; color: var(--pen); rotate: -9deg; }
 .folio-intro p { font-size: clamp(16px, 1.8vw, 29px); }
 .folio-intro strong { font-weight: 650; }
 
@@ -326,7 +326,7 @@ html:has(.folio) { scroll-padding-top: 0; }
   .folio-name br { display: none; }
   .folio-hey { width: 35%; left: 44%; top: -72%; }
   .folio-intro { grid-area: 3 / 1; align-self: end; }
-  .folio-intro > svg { width: clamp(42px, 8svh, 60px); margin-bottom: 6px; }
+  .folio-intro-portrait svg { width: clamp(42px, 8svh, 60px); margin-bottom: 6px; }
   .folio-intro p { font-size: clamp(14px, 2.1svh, 17px); }
   .folio-intro-break { display: none; }
   .folio-window { clip-path: var(--mobile-cut, inset(34% 35% round 54px)); }
@@ -351,7 +351,7 @@ html:has(.folio) { scroll-padding-top: 0; }
 
 @media (max-height: 550px) and (max-width: 760px) {
   .folio-name { margin-top: 4px; }
-  .folio-intro > svg { display: none; }
+  .folio-intro-portrait svg { display: none; }
   .folio-window { clip-path: var(--desktop-cut, inset(31% 43.4% round 40px)); }
 }
 

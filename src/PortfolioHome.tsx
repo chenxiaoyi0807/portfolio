@@ -1,6 +1,6 @@
 import { useLayoutEffect, useRef, useState } from 'react';
-import { motion, type MotionStyle, type MotionValue, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
-import { ArrowDown, ArrowUpRight, Check, MessageCircle, Phone, X } from 'lucide-react';
+import { motion, type MotionProps, type MotionStyle, type MotionValue, useInView, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { ArrowDown, ArrowUpRight, Check, MessageCircle, Phone } from 'lucide-react';
 import { Doodle } from './Doodle';
 import { copyText } from './copy-text';
 import { imageFor, projects, type Project } from './data';
@@ -17,6 +17,27 @@ const capabilities = [
 
 function projectHref(project: Project) {
   return sitePath(`projects/${project.slug}/`);
+}
+
+const revealEase = [.22, 1, .36, 1] as const;
+
+function enterOnLoad(reduced: boolean | null, delay: number, rise = 18): MotionProps {
+  if (reduced) return {};
+  return {
+    initial: { opacity: 0, y: rise },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: .85, delay, ease: revealEase },
+  };
+}
+
+function enterOnScroll(reduced: boolean | null, delay = 0, rise = 24): MotionProps {
+  if (reduced) return {};
+  return {
+    initial: { opacity: 0, y: rise },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true, amount: .2 },
+    transition: { duration: .9, delay, ease: revealEase },
+  };
 }
 
 function Opening() {
@@ -38,27 +59,27 @@ function Opening() {
     <section className="folio-opening" ref={track} aria-label="陈小黑的设计作品集">
       <div className="folio-opening-screen">
         <motion.div className="folio-opening-copy" style={reduced ? undefined : { opacity: introOpacity }}>
-          <div className="folio-name">
+          <motion.div className="folio-name" {...enterOnLoad(reduced, .08)}>
             <Doodle name="hey" className="folio-hey" />
             <h1>I'm Chen<br /> Xiao Hei.</h1>
-          </div>
+          </motion.div>
           <div className="folio-intro">
-            <Doodle name="portrait" />
-            <p>我是陈小黑，<br />专注于<strong>产品体验、视觉设计<br className="folio-intro-break" />与 AI 应用实践</strong>。</p>
+            <motion.div className="folio-intro-portrait" {...enterOnLoad(reduced, .59)}><Doodle name="portrait" /></motion.div>
+            <motion.p {...enterOnLoad(reduced, .76)}>我是陈小黑，<br />专注于<strong>产品体验、视觉设计<br className="folio-intro-break" />与 AI 应用实践</strong>。</motion.p>
           </div>
         </motion.div>
-        <motion.div className="folio-window" aria-hidden="true"
+        <motion.div className="folio-window" aria-hidden="true" {...enterOnLoad(reduced, .36, 0)}
           style={reduced ? undefined : { '--desktop-cut': desktopCut, '--mobile-cut': mobileCut } as MotionStyle & Record<`--${string}`, MotionValue<string>>}
         >
           <motion.img src={cover} alt="" fetchPriority="high" style={reduced ? undefined : { scale: mediaScale, '--opening-pan': mediaPan } as MotionStyle & Record<`--${string}`, MotionValue<string>>} />
         </motion.div>
-        <a className="folio-scroll" href="#work"><ArrowDown size={16} aria-hidden="true" /> 看作品</a>
+        <motion.a className="folio-scroll" href="#work" {...enterOnLoad(reduced, 1, 8)}><ArrowDown size={16} aria-hidden="true" /> 看作品</motion.a>
       </div>
     </section>
   );
 }
 
-function Works() {
+function Works({ reduced }: { reduced: boolean | null }) {
   const [category, setCategory] = useState(categories[0]);
   const [selected, setSelected] = useState(projects[0]);
   const cover = imageFor(selected.pages[0]);
@@ -76,23 +97,23 @@ function Works() {
     <section id="work" className="folio-work" aria-labelledby="folio-work-title">
       <div className="folio-wrap">
         <div className="folio-work-bar">
-          <h2 id="folio-work-title">精选作品<span>（06）</span></h2>
-          <div className="folio-filters" role="group" aria-label="作品分类">
+          <motion.h2 id="folio-work-title" {...enterOnScroll(reduced)}>精选作品<span>（06）</span></motion.h2>
+          <motion.div className="folio-filters" role="group" aria-label="作品分类" {...enterOnScroll(reduced, .16, 10)}>
             {categories.map(item => (
               <button key={item} type="button" aria-pressed={category === item} onClick={() => changeCategory(item)}>
                 {item}
               </button>
             ))}
-          </div>
+          </motion.div>
         </div>
-        <div className="folio-stage">
+        <motion.div className="folio-stage" {...enterOnScroll(reduced, .08)}>
           <a className="folio-preview" href={projectHref(selected)} aria-label={`查看项目：${selected.name}`}>
             <div className={portraitCover ? "folio-preview-media is-portrait" : "folio-preview-media"} style={{ backgroundImage: `url(${cover})` }}>
               <img key={selected.slug} src={cover} alt={selected.name} loading="lazy" />
             </div>
             <span className="folio-view-case">查看项目 <ArrowUpRight size={16} aria-hidden="true" /></span>
           </a>
-          <div className="folio-projects" role="group" aria-label="切换作品预览">
+          <motion.div className="folio-projects" role="group" aria-label="切换作品预览" {...enterOnScroll(reduced, .22, 14)}>
             {visible.map(project => (
               <button key={project.slug} type="button" aria-pressed={project === selected}
                 onClick={() => setSelected(project)}
@@ -100,18 +121,18 @@ function Works() {
                 <span>{project.name}</span><ArrowUpRight size={17} aria-hidden="true" />
               </button>
             ))}
-          </div>
-          <div className="folio-project-summary" aria-live="polite">
+          </motion.div>
+          <motion.div className="folio-project-summary" aria-live="polite" {...enterOnScroll(reduced, .24, 10)}>
             <span>{selected.category}</span>
             <p>{selected.intro}</p>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
       </div>
     </section>
   );
 }
 
-function Contact() {
+function Contact({ reduced }: { reduced: boolean | null }) {
   const section = useRef<HTMLElement>(null);
   const inView = useInView(section, { amount: .15 });
   const [notice, setNotice] = useState<{ text: string; copied: boolean } | null>(null);
@@ -127,17 +148,17 @@ function Contact() {
 
   return (
     <section id="contact" ref={section} className="folio-contact" aria-labelledby="folio-contact-title">
-      <div className="folio-contact-doodles" data-moving={inView} aria-hidden="true">
+      <motion.div className="folio-contact-doodles" data-moving={inView} aria-hidden="true" {...enterOnScroll(reduced, .28, 0)}>
         <Doodle name="portrait" className="folio-sketch-portrait" />
         <Doodle name="pencil" className="folio-sketch-pencil" />
         <Doodle name="chat" className="folio-sketch-chat" />
         <Doodle name="spark" className="folio-sketch-spark" />
-      </div>
-      <h2 id="folio-contact-title">让好的想法，<br />成为好的体验。</h2>
-      <div className="folio-contact-actions">
+      </motion.div>
+      <motion.h2 id="folio-contact-title" {...enterOnScroll(reduced)}>让好的想法，<br />成为好的体验。</motion.h2>
+      <motion.div className="folio-contact-actions" {...enterOnScroll(reduced, .2, 14)}>
         <button type="button" onClick={copyWeChat}><MessageCircle size={21} aria-hidden="true" /> 获取微信联系方式</button>
         <a href="tel:13524542838"><Phone size={21} aria-hidden="true" /> 135 2454 2838</a>
-      </div>
+      </motion.div>
       <p className="folio-contact-status" role="status">{notice?.copied && <Check size={16} aria-hidden="true" />}{notice?.text}</p>
       <footer className="folio-footer"><span>© {new Date().getFullYear()} CHEN XIAO HEI</span><a href="#top">回到顶部 ↑</a></footer>
     </section>
@@ -145,6 +166,7 @@ function Contact() {
 }
 
 export function PortfolioHome() {
+  const reduced = useReducedMotion();
   useLayoutEffect(() => {
     const anchor = window.location.hash.slice(1);
     if (anchor) document.getElementById(anchor)?.scrollIntoView({ behavior: 'instant' });
@@ -162,20 +184,22 @@ export function PortfolioHome() {
       </header>
       <main id="main">
         <Opening />
-        <Works />
+        <Works reduced={reduced} />
         <section id="about" className="folio-about folio-wrap">
           <Doodle name="spark" className="folio-about-sketch" />
-          <h2>界面之外，<br />看见真实需求。</h2>
-          <p>我是陈小黑，专注于产品体验、视觉设计与 AI 应用实践。我从业务目标与用户问题出发，梳理信息架构、核心流程与关键交互，把复杂业务转化为清晰、连贯的产品体验。</p>
-          <a href="#expertise">设计能力 <ArrowDown size={16} aria-hidden="true" /></a>
+          <motion.h2 {...enterOnScroll(reduced)}>界面之外，<br />看见真实需求。</motion.h2>
+          <motion.p {...enterOnScroll(reduced, .15)}>我是陈小黑，专注于产品体验、视觉设计与 AI 应用实践。我从业务目标与用户问题出发，梳理信息架构、核心流程与关键交互，把复杂业务转化为清晰、连贯的产品体验。</motion.p>
+          <motion.a href="#expertise" {...enterOnScroll(reduced, .27, 10)}>设计能力 <ArrowDown size={16} aria-hidden="true" /></motion.a>
         </section>
         <section id="expertise" className="folio-expertise folio-wrap">
-          <h2>让体验、视觉与 AI<br />落在真实业务里<span>。</span></h2>
+          <motion.h2 {...enterOnScroll(reduced)}>让体验、视觉与 AI<br />落在真实业务里<span>。</span></motion.h2>
           <div className="folio-capabilities">
-            {capabilities.map(([title, text]) => <div key={title}><h3>{title}</h3><p>{text}</p></div>)}
+            {capabilities.map(([title, text], index) => (
+              <motion.div key={title} {...enterOnScroll(reduced, .09 * index, 16)}><h3>{title}</h3><p>{text}</p></motion.div>
+            ))}
           </div>
         </section>
-        <Contact />
+        <Contact reduced={reduced} />
       </main>
     </div>
   );
